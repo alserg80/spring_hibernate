@@ -20,9 +20,6 @@ public class User {
    @Column(name = "email")
    private String email;
 
-//   @Column(name = "cars_id")
-//   private long cars_id;
-
    @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "cars_id")
    private Car userCar;

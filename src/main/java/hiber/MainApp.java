@@ -4,7 +4,6 @@ package hiber;
    Для создания таблицы Car в классе AppConfig.java в методе getSessionFactory() добавил Car.class в factoryBean.setAnnotatedClasses(User.class, Car.class);
  */
 import hiber.config.AppConfig;
-import hiber.model.Car;
 import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -44,8 +43,6 @@ public class MainApp {
       userService.add(user3);
       userService.add(user4);*/
 
-
-
       List<User> users = userService.listUsers();
       for (User user : users) {
          System.out.println("Id = "+user.getId());
@@ -56,10 +53,10 @@ public class MainApp {
          System.out.println();
       }
 
-      users = userService.getUserByCar("BMW", 3);
-      for (User user : users) {
+      List<User> usersByCar = userService.getUserByCar("BMW", 3);
+      for (User user : usersByCar) {
          System.out.print("User with car model: " + user.getUserCar().getModel() + " and series: " + user.getUserCar().getSeries() + " - ");
-         System.out.println(user.getFirstName());
+         System.out.println(user.getFirstName() + ", id: " + user.getId());
       }
 
       context.close();
